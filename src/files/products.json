@@ -1,0 +1,26 @@
+[
+	{
+		"brand": "JBL",
+		"model": "305p MK2",
+		"category": "monitores",
+		"id": 1
+	},
+	{
+		"brand": "sennheiser",
+		"model": "HD25",
+		"category": "auriculares",
+		"id": 2
+	},
+	{
+		"brand": "focusrite",
+		"model": "scarlett",
+		"category": "interfaces",
+		"id": 3
+	},
+    {
+		"brand": "yamaha",
+		"model": "hs5",
+		"category": "monitores",
+		"id": 4
+	}
+]
