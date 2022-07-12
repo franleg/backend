@@ -32,8 +32,9 @@ app.get('/visits',(re,res)=>{
 
 app.get('/products', async (req, res)=>{
     let products = await productService.getAll();
-    let category = req.query.category;
     let id = parseInt(req.query.id);
+    let category = req.query.category;
+    console.log(category)
 
     if(id){
         let productsById = products.filter(prod => prod.id === id);
@@ -45,7 +46,7 @@ app.get('/products', async (req, res)=>{
 
     if(category){
         let productsByCategory = products.filter(prod => prod.category === category);
-        if (productsByCategory.length === 0){
+        if(productsByCategory.length === 0){
             return res.send(`The category ${category} does not exist.`);
         }
         return res.send(productsByCategory);
