@@ -34,7 +34,6 @@ app.get('/products', async (req, res)=>{
     let products = await productService.getAll();
     let id = parseInt(req.query.id);
     let category = req.query.category;
-    console.log(category)
 
     if(id){
         let productsById = products.filter(prod => prod.id === id);
