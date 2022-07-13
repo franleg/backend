@@ -13,7 +13,7 @@ const server = app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}`);
 })
 
-
+// INDEX
 app.get('/', (req,res)=>{
     res.send(`
                 <h1>¡Hello from Express!</h1>
@@ -25,24 +25,26 @@ app.get('/', (req,res)=>{
             `);
 })
 
+// GET VISITS
 app.get('/visits',(re,res)=>{
     counter++;
     res.send(`The server has been visited ${counter} times`);
 })
 
+//GET ALL PRODUCTS OR PRODUCTS BY CATEGORY
 app.get('/products', async (req, res)=>{
     let products = await productService.getAll();
-    let id = parseInt(req.query.id);
     let category = req.query.category;
+//  let id = parseInt(req.query.id);
 
-    if(id){
+/*  if(id){
         let productsById = products.filter(prod => prod.id === id);
         if(productsById.length === 0){
             return res.send(`The product with id ${id} does not exist.`);
         }
         return res.send(productsById);
-    }  
-
+    }   
+*/
     if(category){
         let productsByCategory = products.filter(prod => prod.category === category);
         if(productsByCategory.length === 0){
@@ -54,6 +56,18 @@ app.get('/products', async (req, res)=>{
     return res.send(products);
 })
 
+//GET PRODUCT BY ID
+app.get('/products/:idProduct', async (req, res) => {
+    let products = await productService.getAll();
+    let id = req.params.idProduct
+    if(!products[id] || id < 1){
+        return res.send(`The product with id ${id} does not exist.`)
+    }
+    
+    return res.send(products[id-1])
+})
+
+//GET A RANDOM PRODUCT
 app.get('/random', async (req, res)=>{
     let products = await productService.getAll();
     let random = products[Math.floor(Math.random() * products.length)];
