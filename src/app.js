@@ -13,6 +13,8 @@ const server = app.listen(PORT,()=>{
     console.log(`Listening on port ${PORT}`);
 })
 
+app.use(express.static('src/public'))
+
 // INDEX
 app.get('/', (req,res)=>{
     res.send(`
